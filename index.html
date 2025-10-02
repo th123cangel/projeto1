@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchAI - Product Requirements Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(rgba(37, 99, 235, 0.8), rgba(30, 64, 175, 0.8)), 
+                        url('attached_assets/stock_images/modern_enterprise_ar_bcd9749e.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .hero-content .version {
+            margin-top: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .stakeholder-section {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stakeholder-card {
+            flex: 1;
+            min-width: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .stakeholder-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .roadmap {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .roadmap-item {
+            position: relative;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .roadmap-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-banner {
+            width: 100%;
+            height: 300px;
+            background: url('attached_assets/stock_images/digital_transformati_680b5cbf.jpg') center/cover;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .risk-item {
+            padding: 1rem;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>📑 ArchAI</h1>
+                <div class="subtitle">Architecture as Code + Agentes de IA Corporativa</div>
+                <div class="version">Versão: Draft 0.1 | Outubro/2025</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">1. Visão Geral</h2>
+                <div class="section-content">
+                    <p>A ArchAI é uma plataforma que combina <strong>IA generativa (LLMs)</strong> com a disciplina de <strong>arquitetura corporativa</strong> em frameworks reconhecidos (TOGAF, eTOM, TAM – TM Forum).</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Objetivo:</strong> Permitir que arquitetos, gestores de TI e executivos criem, mantenham e governem arquiteturas <strong>como código (Architecture as Code)</strong>, com suporte a <strong>agentes inteligentes</strong> para geração, validação e evolução contínua dos modelos.
+                    </div>
+
+                    <h3 style="color: var(--primary-color); margin-top: 2rem; margin-bottom: 1rem;">Problema a resolver:</h3>
+                    <ul>
+                        <li>Documentação arquitetural fragmentada, desatualizada e de difícil governança</li>
+                        <li>Falta de automação no ciclo de arquitetura corporativa</li>
+                        <li>Dificuldade em alinhar frameworks globais (TOGAF, TM Forum) com ferramentas práticas do dia a dia (LeanIX, ArchiMate, C4 Model)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">2. Objetivos</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎯 Estratégicos</h3>
+                        <ul>
+                            <li>Modernizar a prática de arquitetura corporativa com IA</li>
+                            <li>Reduzir custos de governança e aumentar a velocidade de atualização</li>
+                            <li>Garantir compliance regulatório e aderência a frameworks</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Táticos</h3>
+                        <ul>
+                            <li>Automatizar geração de diagramas ArchiMate/C4</li>
+                            <li>Orquestrar repositórios de arquitetura (LeanIX, Ardoq, repos Git)</li>
+                            <li>Criar assistentes virtuais (agents) que respondem sobre a arquitetura em linguagem natural</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">3. Stakeholders</h2>
+                <div class="stakeholder-section">
+                    <div class="stakeholder-card">
+                        <h3>👥 Primários</h3>
+                        <p>Arquitetos corporativos, Enterprise Architecture Offices (EAOs)</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <h3>👔 Secundários</h3>
+                        <p>Executivos C-Level (CIO, CTO, CFO), times de inovação e compliance</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <h3>🤝 Parceiros</h3>
+                        <p>Fornecedores de SaaS de arquitetura (LeanIX, Ardoq, Bizzdesign)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-banner"></div>
+
+            <div class="section">
+                <h2 class="section-title">4. Escopo</h2>
+                <div class="feature-grid">
+                    <div class="feature-card" style="background: #dcfce7;">
+                        <h3 style="color: #16a34a;">✅ Incluído</h3>
+                        <ul>
+                            <li>Geração de modelos TOGAF, eTOM e TAM automatizados</li>
+                            <li>Conector nativo para LeanIX, ArchiMate e modelos C4</li>
+                            <li>Agents para governança e respostas em tempo real (RAG + LLM)</li>
+                            <li>Exportação Architecture as Code em YAML/JSON</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card" style="background: #fee2e2;">
+                        <h3 style="color: #dc2626;">❌ Excluído (versão inicial)</h3>
+                        <ul>
+                            <li>Integração com todas as ferramentas de ITSM/DevOps</li>
+                            <li>Suporte completo a todas as variantes do TM Forum (TAM detalhado em micro-níveis)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">5. Casos de Uso / User Stories</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li><strong>Como arquiteto</strong>, quero gerar um modelo TOGAF de baseline architecture automaticamente a partir de entrevistas textuais, para reduzir o tempo inicial de modelagem.</li>
+                        <li><strong>Como gestor</strong>, quero validar gaps com frameworks TM Forum em tempo real, para identificar áreas não cobertas.</li>
+                        <li><strong>Como executivo</strong>, quero receber dashboards e KPIs traduzidos em linguagem de negócios, para apoiar decisões.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">6. Requisitos Funcionais</h2>
+                <ul>
+                    <li><strong>R1:</strong> Importar e exportar modelos em formatos compatíveis (ArchiMate XML, LeanIX API, C4 DSL)</li>
+                    <li><strong>R2:</strong> Gerar diagramas automaticamente com base em prompts em linguagem natural</li>
+                    <li><strong>R3:</strong> Suporte a consultas em linguagem natural sobre a arquitetura</li>
+                    <li><strong>R4:</strong> Versionamento e governança com repositório Git (Architecture as Code)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">7. Requisitos Não Funcionais</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🔒 Segurança</h3>
+                        <p>Suporte a RBAC e SSO corporativo</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Performance</h3>
+                        <p>Resposta de agentes em &lt;3s em consultas padrão</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>✅ Compliance</h3>
+                        <p>Aderência a GDPR/LGPD e frameworks de EA</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 Observabilidade</h3>
+                        <p>Logs detalhados e métricas de uso</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">8. Integrações</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li><strong>Ferramentas de EA:</strong> LeanIX, Ardoq, Bizzdesign</li>
+                        <li><strong>Modelagem:</strong> ArchiMate, C4 Model</li>
+                        <li><strong>Infra:</strong> GitHub/GitLab (Arquitetura como código)</li>
+                        <li><strong>AI/LLM:</strong> OpenAI GPT-5, Anthropic Claude, LangChain</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">9. KPIs & Métricas</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>% de atualização automática de modelos</h4>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Tempo médio de geração de arquitetura baseline</h4>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Nível de aderência aos frameworks (TOGAF, eTOM, TAM)</h4>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Engajamento dos usuários (consultas/semana)</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">10. Roadmap Macro</h2>
+                <div class="roadmap">
+                    <div class="roadmap-item">
+                        <h3>Fase 1 (MVP, 6 meses)</h3>
+                        <p>Conector LeanIX + Geração ArchiMate via prompt</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Fase 2 (12 meses)</h3>
+                        <p>Agents com RAG integrado a repositório Git</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Fase 3 (18 meses)</h3>
+                        <p>Validação automática contra eTOM/TAM</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Fase 4 (24 meses)</h3>
+                        <p>Dashboards executivos + marketplace de agentes de arquitetura</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">11. Riscos e Dependências</h2>
+                <div class="risk-item">⚠️ Dependência de APIs de terceiros (LeanIX, OpenAI)</div>
+                <div class="risk-item">⚠️ Acurácia dos LLMs em contextos técnicos específicos</div>
+                <div class="risk-item">⚠️ Resistência cultural das áreas de arquitetura tradicional</div>
+                <div class="risk-item">⚠️ Risco de lock-in em fornecedores de IA</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
